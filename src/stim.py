@@ -1,5 +1,6 @@
 import pyglet
 import sys
+from random import randint
 from pyglet.gl import *
 from predator import Predator
 from prey import Prey
@@ -8,7 +9,7 @@ window = pyglet.window.Window(800, 600)
 
 glClearColor(0.1, 0.2, 0.3, 1)
 
-organisms = [Predator(100, 120), Prey(200, 300)]
+organisms = []
 
 @window.event
 def on_draw():
@@ -25,8 +26,10 @@ def update(dt):
 pyglet.clock.schedule_interval(update, 1/120.0)
 
 if __name__ == '__main__':
-    no_of_pred = sys.argv[1]
-    no_of_prey = sys.argv[2]
-    print(no_of_pred)
-    print(no_of_pred)
+    no_of_pred = int(sys.argv[1])
+    no_of_prey = int(sys.argv[2])
+    for i in range(no_of_pred):
+        organisms.append(Predator(randint(0, window.width), randint(0, window.height)))
+    for i in range(no_of_prey):
+        organisms.append(Prey(randint(0, window.width), randint(0, window.height)))
     pyglet.app.run()
