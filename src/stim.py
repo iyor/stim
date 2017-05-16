@@ -21,6 +21,21 @@ def on_draw():
 def update(dt):
     for o in organisms:
         o.update(dt)
+        checkBounds(o)
+
+def checkBounds(o):
+    min_x = 0
+    min_y = 0
+    max_x = window.width
+    max_y = window.height
+    if o.x < min_x:
+        o.x = max_x
+    elif o.x > max_x:
+        o.x = min_x
+    if o.y < min_y:
+        o.y = max_y
+    elif o.y > max_y:
+        o.y = min_y
 
 pyglet.clock.schedule_interval(update, 1/120.0)
 

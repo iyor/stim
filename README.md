@@ -2,7 +2,7 @@
 
 **_stim_** _(n.)_ - a school, pod or flock of organisms
 
-**stim** is a basic ecosystem simulator with a basic set of rules made for the observation of predator-prey relationships.
+**stim** is a simple ecosystem simulator with a basic set of rules made for the observation of predator-prey relationships.
 
 To run, simply type
 

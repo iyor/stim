@@ -13,3 +13,7 @@ class Organism(ABC):
     @abstractmethod
     def draw(self):
         pass
+
+    @abstractmethod
+    def pathfind():
+        pass
