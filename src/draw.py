@@ -1,15 +1,6 @@
 from pyglet.gl import *
 from math import pi, sin, cos
 
-def predator(p):
-    glColor3f(0.2, 0.4, 0.5)
-    circle(p.x, p.y, 10)
-
-def prey(p):
-    glColor3f(0.1, 0.7, 0.5)
-    circle(p.x, p.y, 4)
-
-
 def circle(x, y, radius):
     iterations = int(2*radius*pi)
     s = sin(2*pi / iterations)
