@@ -1,7 +1,6 @@
 import pyglet
+import sys
 from pyglet.gl import *
-from math import pi, sin, cos
-import draw
 from predator import Predator
 from prey import Prey
 
@@ -20,11 +19,14 @@ def on_draw():
         o.draw()
 
 def update(dt):
-    draw.circle(100,100,100)
     for o in organisms:
         o.update(dt)
 
 pyglet.clock.schedule_interval(update, 1/120.0)
 
 if __name__ == '__main__':
+    no_of_pred = sys.argv[1]
+    no_of_prey = sys.argv[2]
+    print(no_of_pred)
+    print(no_of_pred)
     pyglet.app.run()
