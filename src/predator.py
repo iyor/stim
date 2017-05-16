@@ -2,6 +2,7 @@ from organism import Organism
 from pyglet.gl import *
 import draw
 
+
 class Predator(Organism):
 
     def draw(self):

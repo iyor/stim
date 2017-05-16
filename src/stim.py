@@ -11,6 +11,7 @@ glClearColor(0.1, 0.2, 0.3, 1)
 
 organisms = []
 
+
 @window.event
 def on_draw():
     window.clear()
@@ -18,9 +19,11 @@ def on_draw():
     for o in organisms:
         o.draw()
 
+
 def update(dt):
     for o in organisms:
         o.update(dt)
+
 
 pyglet.clock.schedule_interval(update, 1/120.0)
 
@@ -29,7 +32,11 @@ if __name__ == '__main__':
     no_of_pred = int(sys.argv[1])
     no_of_prey = int(sys.argv[2])
     for i in range(no_of_pred):
-        organisms.append(Predator(randint(0, window.width), randint(0, window.height)))
+        organisms.append(
+            Predator(randint(0, window.width), randint(0, window.height))
+        )
     for i in range(no_of_prey):
-        organisms.append(Prey(randint(0, window.width), randint(0, window.height)))
+        organisms.append(
+            Prey(randint(0, window.width), randint(0, window.height))
+        )
     pyglet.app.run()
