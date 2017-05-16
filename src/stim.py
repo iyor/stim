@@ -15,7 +15,6 @@ organisms = []
 def on_draw():
     window.clear()
     glClear(GL_COLOR_BUFFER_BIT)
-    glColor3f(0, 0, 0)
     for o in organisms:
         o.draw()
 
@@ -26,6 +25,7 @@ def update(dt):
 pyglet.clock.schedule_interval(update, 1/120.0)
 
 if __name__ == '__main__':
+    # Set up the appropriate number of predator and prey organisms
     no_of_pred = int(sys.argv[1])
     no_of_prey = int(sys.argv[2])
     for i in range(no_of_pred):
