@@ -30,14 +30,14 @@ def checkBounds(o):
     min_y = 0
     max_x = window.width
     max_y = window.height
-    if o.x < min_x:
-        o.x = max_x
-    elif o.x > max_x:
-        o.x = min_x
-    if o.y < min_y:
-        o.y = max_y
-    elif o.y > max_y:
-        o.y = min_y
+    if o.p.x < min_x:
+        o.p.x = max_x
+    elif o.p.x > max_x:
+        o.p.x = min_x
+    if o.p.y < min_y:
+        o.p.y = max_y
+    elif o.p.y > max_y:
+        o.p.y = min_y
 
 
 pyglet.clock.schedule_interval(update, 1/120.0)

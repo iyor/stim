@@ -1,15 +1,15 @@
 from abc import ABC, abstractmethod
+from vec import Vec
 
 
 class Organism(ABC):
 
     def __init__(self, x, y):
-        self.x, self.y = x, y
-        self.v_x, self.v_y = 100.0, 100.0
+        self.p = Vec(x, y)
+        self.v = Vec(100.0, 100.0)
 
     def update(self, dt):
-        self.x += self.v_x * dt
-        self.y += self.v_y * dt
+        self.p += self.v * dt
 
     @abstractmethod
     def draw(self):

@@ -7,7 +7,7 @@ class Prey(Organism):
 
     def draw(self):
         glColor3f(0.1, 0.7, 0.5)
-        draw.circle(self.x, self.y, 4)
+        draw.circle(self.p, 4)
 
     def pathfind():
         return
