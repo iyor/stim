@@ -2,8 +2,8 @@ import pyglet
 import sys
 from random import randint
 from pyglet.gl import *
-from predator import Predator
-from prey import Prey
+from model.predator import Predator
+from model.prey import Prey
 
 window = pyglet.window.Window(800, 600)
 
