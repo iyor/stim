@@ -1,5 +1,6 @@
 import pyglet
 import sys
+from itertools import chain
 from random import randint
 from pyglet.gl import *
 from model.predator import Predator
@@ -17,16 +18,11 @@ predator_list = []
 def on_draw():
     window.clear()
     glClear(GL_COLOR_BUFFER_BIT)
-    for p in prey_list:
-        p.draw()
-    for p in predator_list:
+    for p in chain(prey_list, predator_list):
         p.draw()
 
 def update(dt):
-    for p in prey_list:
-        p.update(dt)
-        checkBounds(p)
-    for p in predator_list:
+    for p in chain(prey_list, predator_list):
         p.update(dt)
         checkBounds(p)
 
