@@ -4,42 +4,26 @@ from itertools import chain
 from random import randint
 from pyglet.gl import *
 from model.predator import Predator
+from model.ecosystem import Ecosystem
 from model.prey import Prey
 
-window = pyglet.window.Window(800, 600)
+width = 800
+height = 600
+
+window = pyglet.window.Window(width, height)
 
 glClearColor(0.1, 0.2, 0.3, 1)
 
-prey_list = []
-predator_list = []
-
+eco = Ecosystem(width, height)
 
 @window.event
 def on_draw():
     window.clear()
     glClear(GL_COLOR_BUFFER_BIT)
-    for p in chain(prey_list, predator_list):
-        p.draw()
+    eco.draw()
 
 def update(dt):
-    for p in chain(prey_list, predator_list):
-        p.update(dt)
-        checkBounds(p)
-
-def checkBounds(o):
-    min_x = 0
-    min_y = 0
-    max_x = window.width
-    max_y = window.height
-    if o.p.x < min_x:
-        o.p.x = max_x
-    elif o.p.x > max_x:
-        o.p.x = min_x
-    if o.p.y < min_y:
-        o.p.y = max_y
-    elif o.p.y > max_y:
-        o.p.y = min_y
-
+    eco.update(dt)
 
 pyglet.clock.schedule_interval(update, 1/120.0)
 
@@ -48,11 +32,11 @@ if __name__ == '__main__':
     no_of_pred = int(sys.argv[1])
     no_of_prey = int(sys.argv[2])
     for i in range(no_of_pred):
-        predator_list.append(
+        eco.add_predator(
             Predator(randint(0, window.width), randint(0, window.height))
         )
     for i in range(no_of_prey):
-        prey_list.append(
+        eco.add_prey(
             Prey(randint(0, window.width), randint(0, window.height))
         )
     pyglet.app.run()
