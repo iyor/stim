@@ -12,8 +12,7 @@ def output_data(ecosystem):
         file.close()
 
 def remove_data():
-    remove(output_destination)
-    
-
-
-    
+    try:
+        remove(output_destination)
+    except FileNotFoundError:
+        pass
