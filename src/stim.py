@@ -3,7 +3,7 @@ import sys
 from itertools import chain
 from random import randint
 from pyglet.gl import *
-from util.output import output_data
+from util.output import output_data, remove_data
 from model.predator import Predator
 from model.ecosystem import Ecosystem
 from model.prey import Prey
@@ -25,9 +25,11 @@ def on_draw():
     glClear(GL_COLOR_BUFFER_BIT)
     eco.draw()
 
+# Update model state
 def update(dt):
     eco.update(dt)
 
+# Write model state to file
 def export_data(dt):
     output_data(eco)
 
@@ -38,6 +40,10 @@ pyglet.clock.schedule_interval(update, 1/120.0)
 pyglet.clock.schedule_interval(export_data, EXPORT_DATA_RATE)
 
 if __name__ == '__main__':
+
+    # Reset output file
+    remove_data()
+
     # Set up the appropriate number of predator and prey organisms
     no_of_pred = int(sys.argv[1])
     no_of_prey = int(sys.argv[2])
