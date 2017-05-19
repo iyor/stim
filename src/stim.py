@@ -3,7 +3,7 @@ import sys
 from itertools import chain
 from random import randint
 from pyglet.gl import *
-from util.output import output_test
+from util.output import output_data
 from model.predator import Predator
 from model.ecosystem import Ecosystem
 from model.prey import Prey
@@ -29,7 +29,7 @@ def update(dt):
     eco.update(dt)
 
 def export_data(dt):
-    output_test(eco)
+    output_data(eco)
 
 # Set simulation update schedule interval
 pyglet.clock.schedule_interval(update, 1/120.0)

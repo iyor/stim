@@ -1,8 +1,16 @@
 import csv
+from os import remove
 
-current_file = ""
+def output_data(ecosystem):
+    file = open('output/population.csv', 'a+')
+    try:
+        writer = csv.writer(file)
+        writer.writerow( (ecosystem.get_no_of_prey(), ecosystem.get_no_of_predators()) )
+    finally:
+        file.close()
 
-def output_test(ecosystem):
-    print("Should write to file")
-    print("Prey: ", ecosystem.get_no_of_prey())
-    print("Predator: ", ecosystem.get_no_of_predators())
+def restart():
+    pass
+
+
+    
