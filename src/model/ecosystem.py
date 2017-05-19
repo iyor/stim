@@ -17,6 +17,12 @@ class Ecosystem:
     def get_organisms(self):
         return chain(self.prey_list, self.predator_list)
 
+    def get_no_of_prey(self):
+        return len(self.prey_list)
+
+    def get_no_of_predators(self):
+        return len(self.predator_list)
+
     def draw(self):
         for p in self.get_organisms():
             p.draw()

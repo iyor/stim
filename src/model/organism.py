@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from lib.vec import Vec
+from util.vec import Vec
 
 
 class Organism(ABC):

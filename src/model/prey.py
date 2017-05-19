@@ -1,6 +1,6 @@
 from model.organism import Organism
 from pyglet.gl import *
-from lib.draw import circle
+from util.draw import circle
 
 
 class Prey(Organism):

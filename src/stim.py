@@ -3,12 +3,15 @@ import sys
 from itertools import chain
 from random import randint
 from pyglet.gl import *
+from util.output import output_test
 from model.predator import Predator
 from model.ecosystem import Ecosystem
 from model.prey import Prey
 
-width = 800
-height = 600
+width = 1000
+height = 700
+
+EXPORT_DATA_RATE = 3
 
 window = pyglet.window.Window(width, height)
 
@@ -25,7 +28,14 @@ def on_draw():
 def update(dt):
     eco.update(dt)
 
+def export_data(dt):
+    output_test(eco)
+
+# Set simulation update schedule interval
 pyglet.clock.schedule_interval(update, 1/120.0)
+
+# Set data export interval time
+pyglet.clock.schedule_interval(export_data, EXPORT_DATA_RATE)
 
 if __name__ == '__main__':
     # Set up the appropriate number of predator and prey organisms
