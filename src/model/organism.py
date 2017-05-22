@@ -6,7 +6,7 @@ class Organism(ABC):
 
     def __init__(self, x, y):
         self.p = Vec(x, y)
-        self.v = Vec(50, 50)
+        self.v = Vec(0, 0)
 
     def update(self, dt):
         self.p += self.v * dt

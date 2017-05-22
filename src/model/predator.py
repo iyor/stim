@@ -13,6 +13,11 @@ class Predator(Organism):
         circle(self.p, 10)
 
     def pathfind(self, prey):
-        direction = prey.p - self.p
-        self.v = Vec(100 * direction.x / direction.abs(), 100 * direction.y / direction.abs())
-        return
+        if prey:
+            direction = prey.p - self.p
+            self.v = Vec(
+                (self.top_speed * direction.x) / direction.abs(),
+                (self.top_speed * direction.y) / direction.abs()
+            )
+        else:
+            self.v = Vec(0, 0)
