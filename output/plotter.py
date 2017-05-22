@@ -12,8 +12,8 @@ with open('output/population.csv','r') as csvfile:
 
 data_points = range(len(predators))
 
-plt.plot(data_points, predators, label='Predators')
-plt.plot(data_points, prey, label='Prey')
+plt.plot(data_points, predators, label='Predators', linestyle='None')
+plt.plot(data_points, prey, label='Prey', marker='o', linestyle='None')
 plt.xlabel('time')
 plt.ylabel('Population')
 plt.title('Predator and Prey Populations')
