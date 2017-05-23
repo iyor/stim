@@ -1,4 +1,8 @@
 from itertools import chain
+from .predator import Predator
+from .prey import Prey
+from .organism import Organism
+import heapq
 
 class Ecosystem:
 
@@ -30,9 +34,18 @@ class Ecosystem:
             p.draw()
 
     def update(self, dt):
-        for p in self.get_organisms():
-            p.update(dt)
-            self.checkBounds(p)
+        for o in self.get_organisms():
+            target = None
+            if isinstance(o, Predator):
+                target = self.get_closest_organism(o, self.prey_list)
+            elif isinstance(o, Prey):
+                target = self.get_closest_organism(o, self.predator_list)
+
+            o.pathfind(target)
+            o.update(dt)
+            self.checkBounds(o)
+
+        self.checkCollisions()
 
     def checkBounds(self, o):
         min_x = 0
@@ -48,3 +61,17 @@ class Ecosystem:
         elif o.p.y > max_y:
             o.p.y = min_y
 
+    def checkCollisions(self):
+        for p in self.predator_list:
+            for q in self.prey_list:
+                if (p.p - q.p).abs() < 1:
+                    self.prey_list.remove(q)
+
+
+    def get_closest_organism(self, p, organisms):
+        priority_queue = list(map(lambda o: (Organism.euclidean(p, o), o), organisms))
+        heapq.heapify(priority_queue)
+        if len(priority_queue) > 0:
+            distance, target = heapq.heappop(priority_queue)
+            return target
+        return None
