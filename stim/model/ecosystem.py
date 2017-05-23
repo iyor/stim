@@ -62,8 +62,9 @@ class Ecosystem:
             target = None
             if isinstance(o, Predator):
                 target = self.get_closest_organism(o, self.prey_list)
-            elif isinstance(o, Prey):
-                target = self.get_closest_organism(o, self.predator_list)
+            # No pathfinding is currently implemented for prey
+            # elif isinstance(o, Prey):
+            #    target = self.get_closest_organism(o, self.predator_list)
 
             o.pathfind(target)
             o.update(dt)
