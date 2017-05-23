@@ -4,7 +4,7 @@ import csv
 predators = []
 prey = []
 
-with open('output/population.csv','r') as csvfile:
+with open('stim/output/population.csv','r') as csvfile:
     plots = csv.reader(csvfile, delimiter=',')
     for row in plots:
         predators.append(int(row[0]))
@@ -12,7 +12,7 @@ with open('output/population.csv','r') as csvfile:
 
 data_points = range(len(predators))
 
-plt.plot(data_points, predators, label='Predators', linestyle='None')
+plt.plot(data_points, predators, label='Predators', marker='o', linestyle='None')
 plt.plot(data_points, prey, label='Prey', marker='o', linestyle='None')
 plt.xlabel('time')
 plt.ylabel('Population')
