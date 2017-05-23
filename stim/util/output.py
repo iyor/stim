@@ -1,7 +1,7 @@
 import csv
 from os import remove
 
-output_destination = "output/population.csv"
+output_destination = "stim/output/population.csv"
 
 def output_data(ecosystem):
     file = open(output_destination, 'a+')

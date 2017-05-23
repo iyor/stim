@@ -5,11 +5,13 @@ class Ecosystem:
     def __init__(self, width, height):
         self.prey_list = []
         self.predator_list = []
+        self.proximity_prey_map = {}
         self.width = width
         self.height = height
 
     def add_prey(self, p):
         self.prey_list.append(p)
+        #self.proximity_prey_map[p.p.x//100][p.p.y//100] = p
 
     def add_predator(self, p):
         self.predator_list.append(p)
