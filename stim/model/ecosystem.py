@@ -2,6 +2,7 @@ from itertools import chain
 from .predator import Predator
 from .prey import Prey
 from .organism import Organism
+from random import randint
 import heapq
 
 class Ecosystem:
@@ -9,16 +10,39 @@ class Ecosystem:
     def __init__(self, width, height):
         self.prey_list = []
         self.predator_list = []
-        self.proximity_prey_map = {}
         self.width = width
         self.height = height
 
-    def add_prey(self, p):
+    def add_prey(self):
+        p = Prey(randint(0, self.width), randint(0, self.height))
         self.prey_list.append(p)
-        #self.proximity_prey_map[p.p.x//100][p.p.y//100] = p
+        p.set_observer(self)
 
-    def add_predator(self, p):
+    def add_predator(self):
+        p = Predator(randint(0, self.width), randint(0, self.height))
         self.predator_list.append(p)
+        p.set_observer(self)
+
+    def notify_death(self, p):
+        """
+        We're getting ValueError due to trying to delete organisms
+        that have already been removed. This problem is currently 
+        fixed with a hacky passing of the error
+        """
+        try:
+            if isinstance(p, Predator):
+                self.predator_list.remove(p)
+            elif isinstance(p, Prey):
+                self.prey_list.remove(p)
+        except ValueError:
+            pass
+
+    def notify_reproduction(self, p):
+        if isinstance(p, Predator):
+            self.add_predator()
+        elif isinstance(p, Prey):
+            self.add_prey()
+
 
     def get_organisms(self):
         return chain(self.prey_list, self.predator_list)
@@ -66,6 +90,7 @@ class Ecosystem:
             for q in self.prey_list:
                 if (p.p - q.p).abs() < 1:
                     self.prey_list.remove(q)
+                    p.eat()
 
 
     def get_closest_organism(self, p, organisms):

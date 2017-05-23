@@ -8,6 +8,11 @@ class Prey(Organism):
 
     top_speed = 100
 
+    def __init__(self, x, y):
+        super(Prey, self).__init__(x, y)
+        self.lifespan = 10
+        self.reproduction_interval = 4
+
     def draw(self):
         glColor3f(0.1, 0.7, 0.5)
         circle(self.p, 4)

@@ -1,7 +1,6 @@
 import pyglet
 import sys
 from itertools import chain
-from random import randint
 from pyglet.gl import *
 from util.output import output_data, remove_data
 from model.predator import Predator
@@ -48,11 +47,7 @@ if __name__ == '__main__':
     no_of_pred = int(sys.argv[1])
     no_of_prey = int(sys.argv[2])
     for i in range(no_of_pred):
-        eco.add_predator(
-            Predator(randint(0, window.width), randint(0, window.height))
-        )
+        eco.add_predator()
     for i in range(no_of_prey):
-        eco.add_prey(
-            Prey(randint(0, window.width), randint(0, window.height))
-        )
+        eco.add_prey()
     pyglet.app.run()
