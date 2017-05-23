@@ -101,4 +101,4 @@ ENV/
 .mypy_cache/
 
 # Output data from simulation
-output/population.csv
+stim/output/population.csv
