@@ -12,8 +12,8 @@ with open('stim/output/population.csv','r') as csvfile:
 
 data_points = range(len(predators))
 
-plt.plot(data_points, predators, label='Predators', marker='o', linestyle='None')
-plt.plot(data_points, prey, label='Prey', marker='o', linestyle='None')
+plt.plot(data_points, predators, label='Predators', marker='o', linestyle='-')
+plt.plot(data_points, prey, label='Prey', marker='o', linestyle='-')
 plt.xlabel('time')
 plt.ylabel('Population')
 plt.title('Predator and Prey Populations')
