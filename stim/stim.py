@@ -7,10 +7,12 @@ from model.predator import Predator
 from model.ecosystem import Ecosystem
 from model.prey import Prey
 
+pyglet.options['debug_gl'] = False
+
 width = 1000
 height = 700
 
-EXPORT_DATA_RATE = 3
+EXPORT_DATA_RATE = 1/30.0
 
 window = pyglet.window.Window(width, height)
 

@@ -3,7 +3,6 @@ from .predator import Predator
 from .prey import Prey
 from .organism import Organism
 from random import randint
-import heapq
 
 class Ecosystem:
 
@@ -26,7 +25,7 @@ class Ecosystem:
     def notify_death(self, p):
         """
         We're getting ValueError due to trying to delete organisms
-        that have already been removed. This problem is currently 
+        that have already been removed. This problem is currently
         fixed with a hacky passing of the error
         """
         try:
@@ -61,10 +60,10 @@ class Ecosystem:
         for o in self.get_organisms():
             target = None
             if isinstance(o, Predator):
-                target = self.get_closest_organism(o, self.prey_list)
+                target = self.get_nearby_organism(o, self.prey_list)
             # No pathfinding is currently implemented for prey
             # elif isinstance(o, Prey):
-            #    target = self.get_closest_organism(o, self.predator_list)
+            #    target = self.get_nearby_organism(o, self.predator_list)
 
             o.pathfind(target)
             o.update(dt)
@@ -93,11 +92,19 @@ class Ecosystem:
                     self.prey_list.remove(q)
                     p.eat()
 
+    def get_random_organism(self, p, organisms):
+        return organisms[randint(0, len(organisms) - 1)]
 
-    def get_closest_organism(self, p, organisms):
-        priority_queue = list(map(lambda o: (Organism.euclidean(p, o), o), organisms))
-        heapq.heapify(priority_queue)
-        if len(priority_queue) > 0:
-            distance, target = heapq.heappop(priority_queue)
-            return target
-        return None
+    def get_nearby_organism(self, p, organisms, closest_only = False):
+        smallest_distance = 0
+        closest_organism = None
+
+        for o in organisms:
+            distance = Organism.euclidean(p, o)
+            if (closest_only == False) and (distance < 10):
+                return o
+            if (closest_organism is None) or (distance < smallest_distance):
+                smallest_distance = distance
+                closest_organism = o
+
+        return closest_organism

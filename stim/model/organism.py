@@ -5,7 +5,7 @@ from util.vec import Vec
 class Organism(ABC):
 
     observer = None
- 
+
     def __init__(self, x, y):
         self.p = Vec(x, y)
         self.v = Vec(0, 0)
@@ -13,6 +13,15 @@ class Organism(ABC):
         self.lifespan = 0
         self.reproduction_interval = 0
         self.time_since_last_reproduction = 0.0
+
+    """
+    Sometimes we place an organism in a priority queue to find the closest one.
+    If two organisms have the same distance to another, the built-in heapify function
+    compares on object instead. In this case we don't care which one to choose,
+    and so we simply return the first one.
+    """
+    def __lt__(self, other):
+        return -1
 
     def update(self, dt):
         self.p += self.v * dt

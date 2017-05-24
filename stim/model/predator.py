@@ -8,7 +8,7 @@ class Predator(Organism):
 
     top_speed = 100
     max_lifespan = 18
- 
+
     def __init__(self, x, y):
         super(Predator, self).__init__(x, y)
         self.lifespan = 6
@@ -21,10 +21,15 @@ class Predator(Organism):
     def pathfind(self, prey):
         if prey:
             direction = prey.p - self.p
-            self.v = Vec(
-                (self.top_speed * direction.x) / direction.abs(),
-                (self.top_speed * direction.y) / direction.abs()
-            )
+            absolute = direction.abs()
+
+            if absolute != 0:
+                self.v = Vec(
+                    (self.top_speed * direction.x) / absolute,
+                    (self.top_speed * direction.y) / absolute
+                )
+            else:
+                self.v = Vec(0, 0)
         else:
             self.v = Vec(0, 0)
 
