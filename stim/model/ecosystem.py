@@ -3,7 +3,6 @@ from .predator import Predator
 from .prey import Prey
 from .organism import Organism
 from random import randint
-import heapq
 
 class Ecosystem:
 
@@ -97,18 +96,15 @@ class Ecosystem:
         return organisms[randint(0, len(organisms) - 1)]
 
     def get_nearby_organism(self, p, organisms, closest_only = False):
-        priority_queue = []
+        smallest_distance = 0
+        closest_organism = None
 
-        # Sometimes we're OK with not finding the closest organism in order to
-        # speed up calculations.
         for o in organisms:
             distance = Organism.euclidean(p, o)
-            if (not closest_only) and distance < 10:
+            if (closest_only == False) and (distance < 10):
                 return o
-            priority_queue.append((distance, o))
+            if (closest_organism is None) or (distance < smallest_distance):
+                smallest_distance = distance
+                closest_organism = o
 
-        heapq.heapify(priority_queue)
-        if len(priority_queue) > 0:
-            distance, target = heapq.heappop(priority_queue)
-            return target
-        return None
+        return closest_organism
