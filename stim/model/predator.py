@@ -11,8 +11,8 @@ class Predator(Organism):
 
     def __init__(self, x, y):
         super(Predator, self).__init__(x, y)
-        self.lifespan = 6
-        self.reproduction_interval = 7
+        self.lifespan = 7
+        self.reproduction_interval = 8
 
     def draw(self):
         glColor3f(0.2, 0.4, 0.5)
@@ -35,4 +35,4 @@ class Predator(Organism):
 
     def eat(self):
         if self.lifespan < self.max_lifespan:
-            self.lifespan += 3
+            self.lifespan += 0.4
