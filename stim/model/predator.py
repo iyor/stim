@@ -7,6 +7,8 @@ from util.vec import Vec
 class Predator(Organism):
 
     top_speed = 100
+    lifespan_increase = 0.4
+    increase_limit = 3
 
     def __init__(self, x, y):
         super(Predator, self).__init__(x, y)
@@ -33,5 +35,5 @@ class Predator(Organism):
             self.v = Vec(0, 0)
 
     def eat(self):
-        if self.age - self.lifespan < 3:
-            self.lifespan += 0.4
+        if self.age - self.lifespan < self.increase_limit:
+            self.lifespan += self.lifespan_increase

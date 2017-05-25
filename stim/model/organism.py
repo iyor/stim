@@ -13,15 +13,6 @@ class Organism(ABC):
         self.lifespan = 0
         self.reproduction_chance = 0.0
 
-    """
-    Sometimes we place an organism in a priority queue to find the closest one.
-    If two organisms have the same distance to another, the built-in heapify function
-    compares on object instead. In this case we don't care which one to choose,
-    and so we simply return the first one.
-    """
-    def __lt__(self, other):
-        return -1
-
     def update(self, dt):
         self.p += self.v * dt
         self.age += dt
