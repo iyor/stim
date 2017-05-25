@@ -10,8 +10,8 @@ class Prey(Organism):
 
     def __init__(self, x, y):
         super(Prey, self).__init__(x, y)
-        self.lifespan = 11
-        self.reproduction_interval = 5
+        self.lifespan = 20
+        self.reproduction_chance = 0.003
 
     def draw(self):
         glColor3f(0.1, 0.7, 0.5)

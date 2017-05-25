@@ -12,7 +12,7 @@ pyglet.options['debug_gl'] = False
 width = 1000
 height = 700
 
-EXPORT_DATA_RATE = 1/30.0
+EXPORT_DATA_RATE = 1
 
 window = pyglet.window.Window(width, height)
 

@@ -7,12 +7,12 @@ from util.vec import Vec
 class Predator(Organism):
 
     top_speed = 100
-    max_lifespan = 18
+    max_lifespan = 100
 
     def __init__(self, x, y):
         super(Predator, self).__init__(x, y)
-        self.lifespan = 7
-        self.reproduction_interval = 8
+        self.lifespan = 3
+        self.reproduction_chance = 0.002
 
     def draw(self):
         glColor3f(0.2, 0.4, 0.5)
