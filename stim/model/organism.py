@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from util.vec import Vec
-import random 
+import random
 
 class Organism(ABC):
 

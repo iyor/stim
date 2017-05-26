@@ -30,9 +30,11 @@ class Ecosystem:
         """
         try:
             if isinstance(p, Predator):
-                self.predator_list.remove(p)
+                if len(self.predator_list) >= 2:
+                    self.predator_list.remove(p)
             elif isinstance(p, Prey):
-                self.prey_list.remove(p)
+                if len(self.prey_list) >= 2:
+                    self.prey_list.remove(p)
         except ValueError:
             pass
 
@@ -89,8 +91,9 @@ class Ecosystem:
         for p in self.predator_list:
             for q in self.prey_list:
                 if (p.p - q.p).abs() < 1:
-                    self.prey_list.remove(q)
-                    p.eat()
+                    if len(self.prey_list) >= 2:
+                        self.prey_list.remove(q)
+                        p.eat()
 
     def get_random_organism(self, p, organisms):
         return organisms[randint(0, len(organisms) - 1)]
